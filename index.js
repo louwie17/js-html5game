@@ -1,18 +1,11 @@
-// Import stylesheets
-import './style.css';
-
-// Write Javascript code!
-const appDiv = document.getElementById('app');
-appDiv.innerHTML = `<h1>JS Starter</h1>`;
-
 var myGamePiece;
 var myObstacles = [];
 var myScore;
 var myLifes;
 var images = {
-    virus: './images/virus.png',
-    virusdead: './images/virusdead2.png',
-    swordman: './images/swordman_black.png'
+    virus: 'https://cdn.jsdelivr.net/gh/louwie17/js-html5game@master/images/virus.png',
+    virusdead: 'https://cdn.jsdelivr.net/gh/louwie17/js-html5game@master/images/virusdead2.png',
+    swordman: 'https://cdn.jsdelivr.net/gh/louwie17/js-html5game@master/images/swordman_black.png'
 };
 var imageSrc = {};
 var loaded = 0;
@@ -22,6 +15,7 @@ Object.keys(images).forEach(function(key) {
     img.onload = function () {
         loaded++;
         imageSrc[key] = img;
+        // console.log("test");
         if (loaded === Object.keys(images).length) {
             startGame();
         }
@@ -69,7 +63,7 @@ function component(width, height, imgOrColor, x, y, type) {
     this.imgOrColor = imgOrColor;
     this.isDead = false;
     this.update = function() {
-        ctx = myGameArea.context;
+        var ctx = myGameArea.context;
         if (this.type == "text") {
             ctx.font = this.width + " " + this.height;
             ctx.fillStyle = this.imgOrColor;
@@ -119,7 +113,7 @@ function component(width, height, imgOrColor, x, y, type) {
 
 var interval = 120;
 function updateGameArea() {
-    var x, height, gap, minHeight, maxHeight, minGap, maxGap;
+    var x, height, gap, minHeight, maxHeight, minGap, maxGap, i;
     var score = 0;
     for (i = 0; i < myObstacles.length; i += 1) {
         if (myGamePiece.crashWith(myObstacles[i])) {
