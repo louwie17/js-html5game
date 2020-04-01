@@ -17,7 +17,7 @@ Object.keys(images).forEach(function(key) {
         imageSrc[key] = img;
         // console.log("test");
         if (loaded === Object.keys(images).length) {
-            startGame();
+            // startGame();
         }
     };
 })
@@ -164,6 +164,6 @@ function everyinterval(n) {
     return false;
 }
 
-function accelerate(n) {
+window.accelerate = function(n) {
     myGamePiece.gravity = n;
 }
