@@ -5,40 +5,56 @@
       border:1px solid #d3d3d3;
       background-color: #f1f1f1;
      }
-     #colorCanvas {
-       width: 200px;
-       height: 150px;
-     }
     </style>
   </head>
   <body>
-    <canvas id="colorCanvas"></canvas>
+    <canvas id="colorCanvas" width="400" height="350"></canvas>
 
     <script>
-      var c = document.getElementById("colorCanvas");
-      var context = c.getContext("2d");
+      var canvas = document.getElementById("colorCanvas");
+      var context = canvas.getContext("2d");
       context.moveTo(0, 10); // x, y
       context.lineTo(60, 10);  // x, y
       context.lineWidth = 7;
       context.strokeStyle = 'red';
       context.stroke();
-      // rectangle
-      context.fillRect(50, 50, 50, 50); // x, y, width, height
-      // text
-      context.font = "20px Georgia";
-      context.fillText("test", 150, 100); // text, x, y
+      // RECTANGLE
+      // context.fillRect(50, 50, 50, 50); // x, y, width, height
+      // TEXT
+      // context.font = "20px Georgia";
+      // context.fillText("test", 150, 100); // text, x, y
 
-      // circle
-      context.beginPath();
-      context.arc(100, 75, 50, 0, 2 * Math.PI); // x,y,radius,sAngle,eAngle
-      context.fillStyle = "red";
-      context.fill();
+      // CIRCLE
+      // context.beginPath();
+      // context.arc(100, 75, 50, 0, 2 * Math.PI); // x,y,radius,sAngle,eAngle
+      // context.fillStyle = "red";
+      // context.fill();
+
+      // animate growing line
+      var x = 0;
+      /* setInterval(function() {
+        x++;
+        context.lineTo(x, 10);
+        context.stroke();
+      }, 20);*/
+
+      // mouse move
+      /** context.beginPath();
+      canvas.addEventListener("mousemove", function(event) {
+        // var rect = canvas.getBoundingClientRect();
+        context.lineTo(event.clientX, event.clientY);
+        context.stroke();
+      }); */
+
+      // Turn into picture
+      // var img    = canvas.toDataURL("image/png");
+      // document.write('<img src="'+img+'"/>')
     </script>
 
 <br>
-<!--<button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)">ACCELERATE</button>-->
+<!--<button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)">ACCELERATE</button>
 <p>Use the ACCELERATE button to stay in the air</p>
-<p>How long can you stay alive?</p>
+<p>How long can you stay alive?</p>-->
     <!-- <script src="index.js"></script> -->
   </body>
 <html>
