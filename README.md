@@ -23,6 +23,8 @@ https://www.w3schools.com/tags/ref_canvas.asp
 
 https://www.html5canvastutorials.com/
 
+A place to get icons: https://game-icons.net/
+
 # Shareable Editor url:
 
 https://stackblitz.com/edit/js-y5dkxb
