@@ -51,35 +51,60 @@ function startGame() {
     game = new myGame("colorCanvas");
     game.start();
 }
-
+/*
+* (abs(a.x - b.x) * 2 < (a.width + b.width)) &&
+         (abs(a.y - b.y) * 2 < (a.height + b.height));
+ */
+var lifes = 10;
+var score = 0;
 var swordmanY = 260;
 var virusX = 350;
+var virusY = 100;
+var crash = false;
+
+var array = [1,234,5,5];
+array.push(9);
+array.pop();
+
 function updateGameArea(context) {
   game.clear();
   var virus = imageSrc.virus;
-  var myleft = 70;
+  var myleft = 10;
   var myright = 140;
   var mytop = swordmanY;
   var mybottom = swordmanY + 70;
   var virusleft = virusX;
   var virusright = virusX + 70;
-  var virustop = 100;
-  var virusbottom = 100 + 70;
-  var crash = true;
-  if ((virustop < mybottom) || (mytop < virusbottom) || (myright < virusleft) || (myleft < virusright)) {
-    crash = false;
+  var virustop = virusY;
+  var virusbottom = virusY + 70;
+  
+  if (Math.abs(myleft - virusleft) * 2 < (70 + 35) && Math.abs(mytop - virustop) * 2 < (70 + 70) ) {
+     if (crash === false) {
+       score += 10;
+     }
+     crash = true;
   }
+  
   if (crash) {
       virus = imageSrc.virusdead;
   }
-  context.drawImage(virus,0,0,virus.width,virus.height,virusX,100,70,70);
+  context.drawImage(virus,0,0,virus.width,virus.height,virusX,virusY,70,70);
   
   var swordman = imageSrc.swordman;
   context.drawImage(swordman,0,0,swordman.width,swordman.height,10,swordmanY,70,70); // 70 width and 70 long
   // We want to update the game here
+  context.font = "20px Georgia";
+  
+  context.fillText("Lifes: " + lifes, 300, 20); // text, x, y 
+  context.fillText("Score: " + score, 300, 40); 
   virusX -= 1;
-  if (virusX < -90) {
+  if (virusright < 0) {
     virusX = 350;
+    virusY = Math.floor(Math.random() * 300) + 25;
+    if (crash === false) {
+      lifes--;
+    }
+    crash = false;
   }
 }
 
